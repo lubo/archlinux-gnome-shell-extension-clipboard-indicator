@@ -1,5 +1,5 @@
 pkgbase = gnome-shell-extension-clipboard-indicator
-	pkgdesc = Adds a clipboard indicator to the top panel, and caches clipboard history
+	pkgdesc = The most popular clipboard manager for GNOME
 	pkgver = 71
 	pkgrel = 1
 	url = https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator
