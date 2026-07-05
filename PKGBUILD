@@ -31,7 +31,6 @@ package() {
   make "INSTALLPATH=${pkgdir}/usr/share/gnome-shell/extensions/${_uuid}" install
 
   install -d "$pkgdir/usr/share/glib-2.0" \
-    && cp -a "$pkgdir/usr/share/gnome-shell/extensions/$_uuid/schemas" "$_"
-
+    && mv "$pkgdir/usr/share/gnome-shell/extensions/$_uuid/schemas" "$_"
   rm -f "$pkgdir/usr/share/glib-2.0/schemas/gschemas.compiled"
 }
