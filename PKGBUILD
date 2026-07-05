@@ -11,14 +11,24 @@ conflicts=("gnome-shell-extension-clipboard-history")
 source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
 sha256sums=('31d6c3694889b0f1c257b113926643e6a37610495f501cbd810eb2c14b9ebd85')
 
+prepare() {
+  cd "${pkgname}-${pkgver}"
+
+  sed -i \
+    -e 's/\bREADME\.rst\b//' \
+    -e 's/^\(install:\) all$/\1/' \
+    Makefile
+}
+
 package() {
   depends=(
     "gnome-shell>=1:46"
     "gnome-shell<1:51"
   )
 
-  install -d "$pkgdir/usr/share/gnome-shell/extensions" \
-    && cp -a "$srcdir/$pkgname-$pkgver/." "$_/$_uuid"
+  cd "${pkgname}-${pkgver}"
+
+  make "INSTALLPATH=${pkgdir}/usr/share/gnome-shell/extensions/${_uuid}" install
 
   install -d "$pkgdir/usr/share/glib-2.0" \
     && cp -a "$pkgdir/usr/share/gnome-shell/extensions/$_uuid/schemas" "$_"
