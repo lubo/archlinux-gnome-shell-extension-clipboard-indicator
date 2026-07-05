@@ -7,12 +7,15 @@ pkgdesc="Adds a clipboard indicator to the top panel, and caches clipboard histo
 arch=("any")
 url="https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator"
 license=("MIT")
-depends=("gnome-shell>=1:46.0")
 conflicts=("gnome-shell-extension-clipboard-history")
 source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
 sha256sums=('31d6c3694889b0f1c257b113926643e6a37610495f501cbd810eb2c14b9ebd85')
 
 package() {
+  depends=(
+    "gnome-shell>=1:46"
+  )
+
   install -d "$pkgdir/usr/share/gnome-shell/extensions" \
     && cp -a "$srcdir/$pkgname-$pkgver/." "$_/$_uuid"
 
