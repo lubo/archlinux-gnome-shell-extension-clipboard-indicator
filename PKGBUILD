@@ -1,6 +1,8 @@
+#!/bin/bash -e
+#
 # Maintainer: Jonian Guveli <https://github.com/jonian/>
 pkgname=gnome-shell-extension-clipboard-indicator
-_uuid=("clipboard-indicator@tudmotu.com")
+_uuid=clipboard-indicator@tudmotu.com
 pkgver=71
 pkgrel=1
 pkgdesc="Adds a clipboard indicator to the top panel, and caches clipboard history"
@@ -26,6 +28,8 @@ package() {
     "gnome-shell<1:51"
   )
 
+  : "${pkgdir:?}"
+
   cd "${pkgname}-${pkgver}"
 
   make "INSTALLPATH=${pkgdir}/usr/share/gnome-shell/extensions/${_uuid}" install
@@ -37,3 +41,12 @@ package() {
   install -d "${pkgdir}/usr/share/licenses/${pkgname}" \
     && mv "${pkgdir}/usr/share/gnome-shell/extensions/${_uuid}/LICENSE.rst" "$_"
 }
+
+: "${arch[@]}"
+: "${conflicts[@]}"
+: "${depends[@]}"
+: "${license[@]}"
+: "${pkgdesc}"
+: "${pkgrel}"
+: "${sha256sums[@]}"
+: "${source[@]}"
