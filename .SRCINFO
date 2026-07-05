@@ -11,3 +11,4 @@ pkgbase = gnome-shell-extension-clipboard-indicator
 
 pkgname = gnome-shell-extension-clipboard-indicator
 	depends = gnome-shell>=1:46
+	depends = gnome-shell<1:51

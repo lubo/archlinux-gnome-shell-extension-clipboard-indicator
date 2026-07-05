@@ -14,6 +14,7 @@ sha256sums=('31d6c3694889b0f1c257b113926643e6a37610495f501cbd810eb2c14b9ebd85')
 package() {
   depends=(
     "gnome-shell>=1:46"
+    "gnome-shell<1:51"
   )
 
   install -d "$pkgdir/usr/share/gnome-shell/extensions" \
