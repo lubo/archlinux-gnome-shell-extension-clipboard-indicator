@@ -9,6 +9,9 @@ pkgdesc="Adds a clipboard indicator to the top panel, and caches clipboard histo
 arch=("any")
 url="https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator"
 license=("MIT")
+makedepends=(
+  jq
+)
 conflicts=("gnome-shell-extension-clipboard-history")
 source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
 sha256sums=('31d6c3694889b0f1c257b113926643e6a37610495f501cbd810eb2c14b9ebd85')
@@ -24,8 +27,7 @@ prepare() {
 
 package() {
   depends=(
-    "gnome-shell>=1:46"
-    "gnome-shell<1:51"
+    "gnome-shell"
   )
 
   : "${pkgdir:?}"
@@ -40,12 +42,26 @@ package() {
 
   install -d "${pkgdir}/usr/share/licenses/${pkgname}" \
     && mv "${pkgdir}/usr/share/gnome-shell/extensions/${_uuid}/LICENSE.rst" "$_"
+
+  local depends_constraints shell_ver_min shell_ver_max
+  read -r shell_ver_min shell_ver_max < <(
+    jq \
+      --raw-output \
+      '.["shell-version"] | map(tonumber) | "\(min) \(max)"' \
+      metadata.json
+  )
+  depends_constraints=(
+    "gnome-shell>=1:${shell_ver_min}"
+    "gnome-shell<1:$((shell_ver_max + 1))"
+  )
+  depends+=("${depends_constraints[@]}")
 }
 
 : "${arch[@]}"
 : "${conflicts[@]}"
 : "${depends[@]}"
 : "${license[@]}"
+: "${makedepends[@]}"
 : "${pkgdesc}"
 : "${pkgrel}"
 : "${sha256sums[@]}"
