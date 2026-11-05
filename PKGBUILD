@@ -4,7 +4,7 @@
 pkgname=gnome-shell-extension-clipboard-indicator
 _uuid=clipboard-indicator@tudmotu.com
 pkgver=71
-pkgrel=2
+pkgrel=3
 pkgdesc="The most popular clipboard manager for GNOME"
 arch=("any")
 url="https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator"
