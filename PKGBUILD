@@ -3,7 +3,7 @@
 # Maintainer: Jonian Guveli <https://github.com/jonian/>
 pkgname=gnome-shell-extension-clipboard-indicator
 _uuid=clipboard-indicator@tudmotu.com
-pkgver=72
+pkgver=73
 pkgrel=1
 pkgdesc="The most popular clipboard manager for GNOME"
 arch=("any")
@@ -16,7 +16,7 @@ conflicts=("gnome-shell-extension-clipboard-history")
 source=(
   "${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
 )
-sha256sums=('26cda053b762514f4d29acac4b82090e672b7380e667fd7ec90b6b6ae5e55a06')
+sha256sums=('ec6765db8a94c4653cb82657e3576645bddec35b5b85658280a66e7d56c257c9')
 
 prepare() {
   cd "${pkgname}-${pkgver}"
